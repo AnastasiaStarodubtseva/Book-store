@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 body {
-  background-color: rgb(233 233 241);
+  background-color: rgb(255 255 255);
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .heading {
@@ -38,6 +39,10 @@ body {
   left: 0;
 }
 
+.item-type {
+  color: #0a1386;
+}
+
 .basket {
   width: 30%;
   position: absolute;
@@ -66,8 +71,23 @@ p {
   margin-bottom: 30px;
 }
 
+.add-to-basket {
+  height: 35px;
+  cursor: pointer;
+  background-color: #55f155;
+  border: 1px solid #dcc7c7;
+  color: #fff;
+  border-radius: 5px;
+}
+
 .remove-item {
   margin-top: 15px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #ec1717;
+  border: 1px solid #dcc7c7;
+  color: #fff;
+  border-radius: 5px;
 }
 
 .total-price {
