@@ -44,6 +44,7 @@ body {
   top: 0;
   right: 0;
   height: 100%;
+  border-left: 1px solid #7b7575;
 }
 
 .basket-heading {
@@ -69,7 +70,7 @@ p {
   margin-top: 15px;
 }
 
-.total {
+.total-price {
   position: absolute;
   bottom: 0;
   width: 100%;

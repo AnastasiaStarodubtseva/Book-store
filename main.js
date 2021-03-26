@@ -13,10 +13,10 @@ function reducer(model, action) {
 
 var store = Redux.createStore(reducer, {
   products: [
-    {type: 'tomato', weight: '0,5kg', price: '0,5€'},
-    {type: 'carrot', weight: '1kg', price: '1€'},
-    {type: 'orange', weight: '0.2kg', price: '0.2€'},
-    {type: 'apple', weight: '0.3kg', price: '0.3€'}
+    {type: 'tomato', weight: '0,5kg', price: currency(0.5)},
+    {type: 'carrot', weight: '1kg', price: currency(0.1)},
+    {type: 'orange', weight: '0.2kg', price: currency(0.2)},
+    {type: 'apple', weight: '0.3kg', price: currency(0.3)}
   ],
   basket: [
 
@@ -35,7 +35,7 @@ function render() {
             React.createElement('div', {className: 'products'}, [
               React.createElement('div', {className: 'product-type'}, product.type),
               React.createElement('div', {className: 'product-weight'}, product.weight),
-              React.createElement('div', {className: 'product-price'}, product.price),
+              React.createElement('div', {className: 'product-price'}, product.price.value),
               React.createElement('button', {className: 'add-to-basket', onClick: function() {
                 store.dispatch({type: 'ADD-TO-THE-BASKET', payload: product})}
               }, 'Add to the basket'),
@@ -54,14 +54,16 @@ function render() {
           React.createElement('div', {className: 'basket-items'}, [
             React.createElement('div', {className: 'item-type'}, basketItem.type),
             React.createElement('div', {className: 'item-weight'}, basketItem.weight),
-            React.createElement('div', {className: 'item-price'}, basketItem.price),
+            React.createElement('div', {className: 'item-price'}, basketItem.price.value),
             React.createElement('button', {className: 'remove-item', onClick: function() {
               store.dispatch({type: 'REMOVE-FROM-THE-BASKET', payload: basketItem})
             }}, 'Remove')
           ])
         )
       }),
-      React.createElement('div', {className: 'total'}, 'Total')
+      React.createElement('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue) {
+        return accumulator.add(currentValue.price) }, currency(0))
+      )
     ])
     ]),
     document.getElementById('root')
