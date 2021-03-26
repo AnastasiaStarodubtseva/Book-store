@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title></title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0-beta.1/redux.js" integrity="sha512-a18iH5k0MJdFLaOvN1STjT2wNpH4tjIKSuWXZOZ7nWxkMydoMGZCkQ88Ch/RnAVzVVNVfhl3dxyg5UKABKhr0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.js" integrity="sha512-iayCotOUh5/OnPj8avX/LSI31Wt4b+zo9+kO/LbkSB1Z7RgWoG2fwJyUX0HMmLz0KstwLwk/QJa+Q33L2VRRTw==" crossorigin="anonymous"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(233 233 241);
+      }
+
+      .heading {
+        text-align: center;
+      }
+
+      .product-name {
+        margin: auto;
+        width: 50%;
+        padding-top: 50px;
+      }
+
+      .products {
+        display: inline-block;
+        padding: 10px;
+        text-align: center;
+        margin-left: 10%;
+      }
+
+      .product-type {
+        color: #0a1386;
+        text-transform: capitalize;
+      }
+
+      .list-of-items {
+        line-height: 50px;
+        font-size: 20px;
+        text-transform: capitalize;
+        padding: 15px;
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .basket {
+        width: 30%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+      }
+
+      .basket-heading {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      p {
+        color: #0a1386;
+        font-size: 19px;
+        margin-top: 45px;
+        text-align: center;
+      }
+
+      .basket-items {
+        text-transform: capitalize;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .remove-item {
+        margin-top: 15px;
+      }
+
+      .total {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        color: #0a1386;
+        font-size: 17px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script>
+      function reducer(model, action) {
+        switch (action.type) {
+          case 'ADD-TO-THE-BASKET':
+            model.basket.push(action.payload);
+            return model;
+          case 'REMOVE-FROM-THE-BASKET':
+            model.basket.splice(model.basket.indexOf(action.payload), 1);
+            return model;
+          default:
+            return model;
+        }
+      }
+
+      var store = Redux.createStore(reducer, {
+        products: [
+          {type: 'tomato', weight: '0,5kg', price: '0,5€'},
+          {type: 'carrot', weight: '1kg', price: '1€'},
+          {type: 'orange', weight: '0.2kg', price: '0.2€'},
+          {type: 'apple', weight: '0.3kg', price: '0.3€'}
+        ],
+        basket: [
+
+        ]
+      });
+
+      function render() {
+        ReactDOM.render(
+          React.createElement(ReactRedux.Provider, { store: store }, [
+            // products
+            React.createElement('div', {className: 'list-of-items'}, [
+            // heading
+              React.createElement('h1', {className: 'heading'}, 'Products'),
+              store.getState().products.map(function(product) {
+                return (
+                  React.createElement('div', {className: 'products'}, [
+                    React.createElement('div', {className: 'product-type'}, product.type),
+                    React.createElement('div', {className: 'product-weight'}, product.weight),
+                    React.createElement('div', {className: 'product-price'}, product.price),
+                    React.createElement('button', {className: 'add-to-basket', onClick: function() {
+                      store.dispatch({type: 'ADD-TO-THE-BASKET', payload: product})}
+                    }, 'Add to the basket'),
+                  ])
+                )
+              })
+            ]),
+
+          // basket
+          React.createElement('div', { className: 'basket' }, [
+            React.createElement('h1', {className: 'basket-heading'}, 'Basket'),
+            store.getState().basket.length === 0
+            ? React.createElement('p', {}, 'Basket is empty')
+            : store.getState().basket.map(function(basketItem) {
+              return (
+                React.createElement('div', {className: 'basket-items'}, [
+                  React.createElement('div', {className: 'item-type'}, basketItem.type),
+                  React.createElement('div', {className: 'item-weight'}, basketItem.weight),
+                  React.createElement('div', {className: 'item-price'}, basketItem.price),
+                  React.createElement('button', {className: 'remove-item', onClick: function() {
+                    store.dispatch({type: 'REMOVE-FROM-THE-BASKET', payload: basketItem})
+                  }}, 'Remove')
+                ])
+              )
+            }),
+            React.createElement('div', {className: 'total'}, 'Total')
+          ])
+          ]),
+          document.getElementById('root')
+        );
+      }
+      store.subscribe(function() { render(); });
+      render();
+    </script>
+  </body>
+</html>
