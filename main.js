@@ -23,21 +23,27 @@ var store = Redux.createStore(reducer, {
   ]
 });
 
+const e = React.createElement;
+
+function div(attrs, children) { return e('div', attrs, children); }
+function button(attrs, children) { return e('button', attrs, children); }
+function img(attrs, children) { return e('img', attrs, children); }
+
 function render() {
   ReactDOM.render(
-    React.createElement(ReactRedux.Provider, { store: store }, [
+    e(ReactRedux.Provider, { store: store }, [
       // products
-      React.createElement('div', {className: 'list-of-items'}, [
+      div({className: 'list-of-items'}, [
       // heading
-        React.createElement('h1', {className: 'heading'}, 'Products'),
+        e('h1', {className: 'heading'}, 'Products'),
         store.getState().products.map(function(product) {
           return (
-            React.createElement('div', {className: 'products'}, [
-              React.createElement('img',  {className: 'item-img' ,src: product.image}, null),
-              React.createElement('div', {className: 'product-type'}, product.type),
-              React.createElement('div', {className: 'product-weight'}, product.weight),
-              React.createElement('div', {className: 'product-price'}, product.price.value),
-              React.createElement('button', {className: 'add-to-basket', onClick: function() {
+            div({className: 'products'}, [
+              img({className: 'item-img' ,src: product.image}, null),
+              div({className: 'product-type'}, product.type),
+              div({className: 'product-weight'}, product.weight),
+              div({className: 'product-price'}, product.price.value),
+              button({className: 'add-to-basket', onClick: function() {
                 store.dispatch({type: 'ADD-TO-THE-BASKET', payload: product})}
               }, 'Add to the basket'),
             ])
@@ -46,25 +52,25 @@ function render() {
       ]),
 
     // basket
-    React.createElement('div', { className: 'basket' }, [
-      React.createElement('h1', {className: 'basket-heading'}, 'Basket'),
+    e('div', { className: 'basket' }, [
+      e('h1', {className: 'basket-heading'}, 'Basket'),
       store.getState().basket.length === 0
-      ? React.createElement('p', {}, 'Basket is empty')
+      ? e('p', {}, 'Basket is empty')
       : store.getState().basket.map(function(basketItem) {
         return (
-          React.createElement('div', {className: 'basket-item'}, [
-            React.createElement('img',  {className: 'item-img' ,src: basketItem.image}, null),
-            React.createElement('div', {className: 'item-type'}, basketItem.type),
-            React.createElement('div', {className: 'item-weight'}, basketItem.weight),
-            React.createElement('div', {className: 'item-price'}, basketItem.price.value),
-            React.createElement('button', {className: 'remove-item', onClick: function() {
+          div({className: 'basket-item'}, [
+            img({className: 'item-img' ,src: basketItem.image}, null),
+            div({className: 'item-type'}, basketItem.type),
+            div({className: 'item-weight'}, basketItem.weight),
+            div({className: 'item-price'}, basketItem.price.value),
+            button({className: 'remove-item', onClick: function() {
               store.dispatch({type: 'REMOVE-FROM-THE-BASKET', payload: basketItem})
             }}, 'Remove')
           ])
         )
       }),
-      React.createElement('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue) {
-        return accumulator.add(currentValue.price) }, currency(0))
+      e('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue){
+        return accumulator.add(currentValue.price)}, currency(0))
       )
     ])
     ]),
