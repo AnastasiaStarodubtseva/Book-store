@@ -13,10 +13,10 @@ function reducer(model, action) {
 
 var store = Redux.createStore(reducer, {
   products: [
-    {type: 'tomato', weight: '0,5kg', price: currency(0.5)},
-    {type: 'carrot', weight: '1kg', price: currency(0.1)},
-    {type: 'orange', weight: '0.2kg', price: currency(0.2)},
-    {type: 'apple', weight: '0.3kg', price: currency(0.3)}
+    {type: 'tomato', weight: '0,5kg', price: currency(0.5), image: './products/tomato.jpeg'},
+    {type: 'carrot', weight: '1kg', price: currency(0.1), image: './products/carrot.jpeg'},
+    {type: 'orange', weight: '0.2kg', price: currency(0.2), image: './products/orange.jpeg'},
+    {type: 'apple', weight: '0.3kg', price: currency(0.3), image: './products/apple.jpeg'}
   ],
   basket: [
 
@@ -33,6 +33,7 @@ function render() {
         store.getState().products.map(function(product) {
           return (
             React.createElement('div', {className: 'products'}, [
+              React.createElement('img',  {className: 'item-img' ,src: product.image}, null),
               React.createElement('div', {className: 'product-type'}, product.type),
               React.createElement('div', {className: 'product-weight'}, product.weight),
               React.createElement('div', {className: 'product-price'}, product.price.value),
@@ -51,7 +52,8 @@ function render() {
       ? React.createElement('p', {}, 'Basket is empty')
       : store.getState().basket.map(function(basketItem) {
         return (
-          React.createElement('div', {className: 'basket-items'}, [
+          React.createElement('div', {className: 'basket-item'}, [
+            React.createElement('img',  {className: 'item-img' ,src: basketItem.image}, null),
             React.createElement('div', {className: 'item-type'}, basketItem.type),
             React.createElement('div', {className: 'item-weight'}, basketItem.weight),
             React.createElement('div', {className: 'item-price'}, basketItem.price.value),

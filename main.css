@@ -23,6 +23,10 @@ body {
   margin-left: 10%;
 }
 
+.item-img {
+  height: 55px;
+}
+
 .product-type {
   color: #0a1386;
   text-transform: capitalize;
@@ -64,7 +68,7 @@ p {
   text-align: center;
 }
 
-.basket-items {
+.basket-item {
   text-transform: capitalize;
   font-size: 17px;
   text-align: center;
@@ -74,8 +78,8 @@ p {
 .add-to-basket {
   height: 35px;
   cursor: pointer;
-  background-color: #55f155;
-  border: 1px solid #dcc7c7;
+  background-color: #5aa75a;
+  border: 1px solid #ece0e0;
   color: #fff;
   border-radius: 5px;
 }
@@ -85,7 +89,7 @@ p {
   padding: 5px;
   cursor: pointer;
   background-color: #ec1717;
-  border: 1px solid #dcc7c7;
+  border: 1px solid #e2dcdc;
   color: #fff;
   border-radius: 5px;
 }
