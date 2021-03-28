@@ -12,12 +12,7 @@ function reducer(model, action) {
 }
 
 var store = Redux.createStore(reducer, {
-  products: [
-    {type: 'tomato', weight: '0,5kg', price: currency(0.5), image: './products/tomato.jpeg'},
-    {type: 'carrot', weight: '1kg', price: currency(0.1), image: './products/carrot.jpeg'},
-    {type: 'orange', weight: '0.2kg', price: currency(0.2), image: './products/orange.jpeg'},
-    {type: 'apple', weight: '0.3kg', price: currency(0.3), image: './products/apple.jpeg'}
-  ],
+  inventory: window.books.store,
   basket: [
 
   ]
@@ -35,17 +30,19 @@ function render() {
       // products
       div({className: 'list-of-items'}, [
       // heading
-        e('h1', {className: 'heading'}, 'Products'),
-        store.getState().products.map(function(product) {
+        e('h1', {className: 'heading'}, 'Books'),
+        store.getState().inventory.map(function(category) { return category.books; }).flat().map(function(book) {
           return (
-            div({className: 'products'}, [
-              img({className: 'item-img' ,src: product.image}, null),
-              div({className: 'product-type'}, product.type),
-              div({className: 'product-weight'}, product.weight),
-              div({className: 'product-price'}, product.price.value),
-              button({className: 'add-to-basket', onClick: function() {
-                store.dispatch({type: 'ADD-TO-THE-BASKET', payload: product})}
-              }, 'Add to the basket'),
+            div({className: 'books', key: book.categories}, [
+              div({className: 'category'}, book.category),
+              div({className: 'book-name'}, book.name),
+              img({className: 'item-img', src: book.image}, null),
+              div({className: 'book-author'}, book.author),
+              div({className: 'book-rate'}, book.rate),
+              div({className: 'book-voters'}), book.voters,
+              // button({className: 'add-to-basket', onClick: function() {
+              //   store.dispatch({type: 'ADD-TO-THE-BASKET', payload: book})}
+              // }, 'Add to the basket'),
             ])
           )
         })
@@ -58,11 +55,13 @@ function render() {
       ? e('p', {}, 'Basket is empty')
       : store.getState().basket.map(function(basketItem) {
         return (
-          div({className: 'basket-item'}, [
-            img({className: 'item-img' ,src: basketItem.image}, null),
-            div({className: 'item-type'}, basketItem.type),
-            div({className: 'item-weight'}, basketItem.weight),
-            div({className: 'item-price'}, basketItem.price.value),
+          div({className: 'basket-item', key: book.name}, [
+            div({className: 'category'}, book.category),
+            div({className: 'book-author'}, book.author),
+            img({className: 'item-img', src: book.image}, null),
+            div({className: 'book-name'}, book.name),
+            div({className: 'book-rate'}, book.rate),
+            div({className: 'book-voters'}), book.rate,
             button({className: 'remove-item', onClick: function() {
               store.dispatch({type: 'REMOVE-FROM-THE-BASKET', payload: basketItem})
             }}, 'Remove')
