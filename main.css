@@ -10,26 +10,8 @@ body {
   text-align: center;
 }
 
-.product-name {
-  margin: auto;
-  width: 50%;
-  padding-top: 50px;
-}
-
-.products {
-  display: inline-block;
-  padding: 10px;
-  text-align: center;
-  margin-left: 10%;
-}
-
 .item-img {
   height: 55px;
-}
-
-.product-type {
-  color: #0a1386;
-  text-transform: capitalize;
 }
 
 .list-of-items {
@@ -43,8 +25,16 @@ body {
   left: 0;
 }
 
-.item-type {
+.books {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  margin-left: 10%;
+}
+
+.book-name {
   color: #0a1386;
+  text-transform: capitalize;
 }
 
 .basket {
@@ -53,19 +43,11 @@ body {
   top: 0;
   right: 0;
   height: 100%;
-  border-left: 1px solid #7b7575;
 }
 
 .basket-heading {
   text-align: center;
   margin-top: 40px;
-}
-
-p {
-  color: #0a1386;
-  font-size: 19px;
-  margin-top: 45px;
-  text-align: center;
 }
 
 .basket-item {
