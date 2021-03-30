@@ -3,7 +3,7 @@
 }
 body {
   background-color: rgb(255 255 255);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .heading {
@@ -12,6 +12,19 @@ body {
 
 .item-img {
   height: 55px;
+}
+
+form.filter-by-categories {
+  top: 0;
+  position: absolute;
+  z-index: 100;
+  margin-top: 20px;
+  left: 45px;
+}
+
+select.options {
+  margin-left: 10px;
+  padding: 2px;
 }
 
 .list-of-items {
@@ -48,6 +61,29 @@ body {
 .basket-heading {
   text-align: center;
   margin-top: 40px;
+}
+
+.empty-basket {
+  /* cursor: pointer; */
+  display: inline-block;
+  position: relative;
+}
+
+.empty-basket:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #b30c0c;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.empty-basket:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .basket-item {

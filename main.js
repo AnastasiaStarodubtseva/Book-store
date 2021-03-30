@@ -6,6 +6,9 @@ function reducer(model, action) {
     case 'REMOVE-FROM-THE-BASKET':
       model.basket.splice(model.basket.indexOf(action.payload), 1);
       return model;
+    case 'CHANGE-CATEGORY':
+      model.category = action.payload;
+      return model;
     default:
       return model;
   }
@@ -28,14 +31,14 @@ function render() {
     e(ReactRedux.Provider, { store: store }, [
       React.createElement('form', { className: 'filter-by-categories'}, [
         React.createElement('label', {className: 'label'}, 'Sort by'),
-        React.createElement('select', {className: 'options', onClick: function() {
-          store.dispatch({type: 'CHANGE-CATEGORY', payload: ''})
+        React.createElement('select', {className: 'options', onChange: function(event) {
+          store.dispatch({type: 'CHANGE-CATEGORY', payload: event.target.value})
         }},
-          React.createElement('option', {value: 'Business'}, 'Business'),
-          React.createElement('option', {value: 'Science'}, 'Science'),
-          React.createElement('option', {value: 'Fiction'}, 'Fiction'),
-          React.createElement('option', {value: 'Hobbies'}, 'Hobbies'),
-          React.createElement('option', {value: 'Biography'}, 'Biography')
+          React.createElement('option', {value: 'business'}, 'Business'),
+          React.createElement('option', {value: 'science'}, 'Science'),
+          React.createElement('option', {value: 'fiction'}, 'Fiction'),
+          React.createElement('option', {value: 'hobbies'}, 'Hobbies'),
+          React.createElement('option', {value: 'biography'}, 'Biography')
         )
       ]),
       // products
@@ -76,7 +79,7 @@ function render() {
     e('div', { className: 'basket' }, [
       e('h1', {className: 'basket-heading'}, 'Basket'),
       store.getState().basket.length === 0
-      ? e('p', {}, 'Basket is empty')
+      ? e('p', {className: 'empty-basket'}, 'Basket is empty')
       : store.getState().basket.reduce(function(accumulator, currentValue) {
           if (accumulator.find(function(bookWithQuantity) { return bookWithQuantity.book === currentValue })) {
             var index = accumulator.findIndex(function(bookWithQuantity) {return bookWithQuantity.book === currentValue});
