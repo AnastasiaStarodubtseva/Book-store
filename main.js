@@ -13,7 +13,8 @@ function reducer(model, action) {
 
 var store = Redux.createStore(reducer, {
   inventory: window.books.store,
-  basket: []
+  basket: [],
+  category: null
 });
 
 const e = React.createElement;
@@ -22,21 +23,32 @@ function div(attrs, children) { return e('div', attrs, children); }
 function button(attrs, children) { return e('button', attrs, children); }
 function img(attrs, children) { return e('img', attrs, children); }
 
-// function search() {
-//   React.createElement('div', { className: 'search-book'}, [
-//     React.createElement('div', {className: 'icon', src: './images/loupe.png'}, {}),
-//     React.createElement('input', {placeholder: 'Search Book'}, {})
-//   ]);
-// }
-
 function render() {
   ReactDOM.render(
     e(ReactRedux.Provider, { store: store }, [
+      React.createElement('form', { className: 'filter-by-categories'}, [
+        React.createElement('label', {className: 'label'}, 'Sort by'),
+        React.createElement('select', {className: 'options', onClick: function() {
+          store.dispatch({type: 'CHANGE-CATEGORY', payload: ''})
+        }},
+          React.createElement('option', {value: 'Business'}, 'Business'),
+          React.createElement('option', {value: 'Science'}, 'Science'),
+          React.createElement('option', {value: 'Fiction'}, 'Fiction'),
+          React.createElement('option', {value: 'Hobbies'}, 'Hobbies'),
+          React.createElement('option', {value: 'Biography'}, 'Biography')
+        )
+      ]),
       // products
       div({className: 'list-of-items'}, [
       // heading
         e('h1', {className: 'heading'}, 'Books'),
-        store.getState().inventory.map(function(category) {
+        store.getState().inventory.filter(function(categoryWithBooks) {
+          if (store.getState().category) {
+            return categoryWithBooks.category === store.getState().category
+          } else {
+            return true;
+          }
+        }).map(function(category) {
           return category.books.map(function(book) {
             book.category = category.category;
             book.price = currency(12);
