@@ -109,7 +109,7 @@ function render() {
         )
       }),
       e('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue){
-        return accumulator.add(currentValue.price)}, currency(0))
+        return accumulator.add(currentValue.price) }, currency(0)) + ' €'
       )
     ])
     ]),
