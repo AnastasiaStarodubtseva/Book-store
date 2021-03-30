@@ -84,6 +84,9 @@ function render() {
             div({className: 'book-voters'}, basketItem.book.voters),
             div({className: 'book-price'}, basketItem.book.price.value + '€'),
             div({className: 'quantity'}, basketItem.quantity),
+            button({className: 'add-book', onClick: function() {
+              store.dispatch({type: 'ADD-TO-THE-BASKET', payload: basketItem.book})
+            }}, 'Quantity'),
             button({className: 'remove-item', onClick: function() {
               store.dispatch({type: 'REMOVE-FROM-THE-BASKET', payload: basketItem})
             }}, 'Remove')
