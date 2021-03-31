@@ -6,6 +6,8 @@ function reducer(model, action) {
     case 'REMOVE-FROM-THE-BASKET':
       model.basket.splice(model.basket.indexOf(action.payload), 1);
       return model;
+    // case 'CLEAR-THE-BASKET':
+    //   return model.basket.splice(0,model.basket.length);
     case 'CHANGE-CATEGORY':
       model.category = action.payload;
       return model;
@@ -91,12 +93,9 @@ function render() {
         }, []).map(function(basketItem) {
         return (
           div({className: 'basket-item', key: basketItem.name}, [
-            div({className: 'category'}, basketItem.book.category),
             div({className: 'book-author'}, basketItem.book.author),
             img({className: 'item-img', src: './images/' + basketItem.book.image}, null),
-            div({className: 'book-name'}, basketItem.name),
-            div({className: 'book-rate'}, basketItem.book.rate),
-            div({className: 'book-voters'}, basketItem.book.voters),
+            div({className: 'book-name'}, basketItem.book.name),
             div({className: 'book-price'}, basketItem.book.price.value + '€'),
             div({className: 'quantity'}, basketItem.quantity),
             button({className: 'add-book', onClick: function() {
@@ -110,7 +109,13 @@ function render() {
       }),
       e('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue){
         return accumulator.add(currentValue.price) }, currency(0)) + ' €'
-      )
+      ),
+      button({className: 'order', onClick: function() {
+        return (console.log(store.getState().basket));
+      }}, 'Order'),
+      // button({className: 'clear-the-basket', onClick: function() {
+      //   store.dispatch({type: 'CLEAR-THE-BASKET', payload: basketItem})
+      // }}, 'Clear the basket')
     ])
     ]),
     document.getElementById('root')

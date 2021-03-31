@@ -22,7 +22,7 @@ body {
 
 .item-img {
   height: 55px;
-  margin-top: 7px;
+  margin: 7px;
 }
 
 .filter-by-categories {
@@ -62,7 +62,7 @@ select.options {
 }
 
 .book-name {
-  color: #0a1386;
+  color: #1d60de;
   text-transform: capitalize;
 }
 
@@ -96,8 +96,8 @@ select.options {
   height: 35px;
   cursor: pointer;
   background-color: #5aa75a;
-  border: 1px solid #ece0e0;
-  color: #fff;
+  border: 1px solid #63ab66;
+  color: #f2f2f3;
   border-radius: 5px;
 }
 
@@ -105,9 +105,9 @@ select.options {
   margin-top: 15px;
   padding: 5px;
   cursor: pointer;
-  background-color: #777373;
-  border: 1px solid #868181;
-  color: #fff;
+  background-color: #a2a7aa;
+  border: 1px solid #a2a7aa;
+  color: #f2f2f3;
   border-radius: 5px;
 }
 
@@ -116,19 +116,40 @@ select.options {
   padding: 5px;
   cursor: pointer;
   background-color: #ec1717;
-  border: 1px solid #e2dcdc;
-  color: #fff;
+  border: 1px solid #e44040;
+  color: #f2f2f3;
   border-radius: 5px;
 }
 
 .total-price {
   position: fixed;
   bottom: 0;
-  width: 30%;
+  width: 15%;
   text-align: center;
-  color: #0a1386;
+  color: #f2f2f3;
   font-size: 17px;
-  border: 1px solid #cac0c0;
+  border: 1px solid #ada8a8;
+  border-right: 1px solid #969595;
+  background-color: #a2a7aa;
   padding: 15px;
   border-radius: 5px;
+  cursor: pointer;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.order {
+  position: fixed;
+  width: 15%;
+  bottom: 0;
+  right: 0;
+  background-color: #a2a7aa;
+  border: 1px solid #ada8a8;
+  cursor: pointer;
+  height: 54px;
+  border-left: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #f2f2f3;
+  font-size: 17px;
 }
