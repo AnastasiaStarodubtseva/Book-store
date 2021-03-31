@@ -6,8 +6,9 @@ function reducer(model, action) {
     case 'REMOVE-FROM-THE-BASKET':
       model.basket.splice(model.basket.indexOf(action.payload), 1);
       return model;
-    // case 'CLEAR-THE-BASKET':
-    //   return model.basket.splice(0,model.basket.length);
+    case 'CLEAR-THE-BASKET':
+      model.basket = [];
+      return model;
     case 'CHANGE-CATEGORY':
       model.category = action.payload;
       return model;
@@ -113,9 +114,12 @@ function render() {
       button({className: 'order', onClick: function() {
         return (console.log(store.getState().basket));
       }}, 'Order'),
-      // button({className: 'clear-the-basket', onClick: function() {
-      //   store.dispatch({type: 'CLEAR-THE-BASKET', payload: basketItem})
-      // }}, 'Clear the basket')
+
+      (store.getState().basket.length
+        ? button({className: 'clear-the-basket', onClick: function() {
+            store.dispatch({type: 'CLEAR-THE-BASKET'})
+          }}, 'Clear the basket')
+        : null)
     ])
     ]),
     document.getElementById('root')
