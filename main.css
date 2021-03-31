@@ -153,3 +153,17 @@ select.options {
   color: #f2f2f3;
   font-size: 17px;
 }
+
+.clear-the-basket {
+  bottom: 50px;
+  position: fixed;
+  top: auto;
+  height: 7%;
+  width: 30%;
+  cursor: pointer;
+  background-color: #ec1717;
+  border: 1px solid #e44040;
+  color: #f2f2f3;
+  font-size: 17px;
+  border-radius: 5px;
+}
