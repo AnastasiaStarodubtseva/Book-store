@@ -13,11 +13,12 @@ div#root {
 
 body {
   background-color: rgb(255 255 255);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Lora', serif;
 }
 
 .heading {
   text-align: center;
+  margin-top: 3px;
 }
 
 .item-img {
@@ -54,16 +55,32 @@ select.options {
   left: 0;
 }
 
-.books {
+.book {
   display: inline-block;
+  position: relative;
   padding: 10px;
   text-align: center;
   margin-left: 10%;
+  width: 20%;
+  vertical-align: top;
+  margin-top: 75px;
+  height: 430px;
+  border: 1px solid #cac0c0;
 }
 
 .book-name {
   color: #1d60de;
   text-transform: capitalize;
+  line-height: 20.9px;
+}
+
+.book-author {
+  line-height: 27.2px;
+}
+
+.book-rate {
+  line-height: 1.2px;
+  margin-top: 15px;
 }
 
 .basket {
@@ -99,6 +116,11 @@ select.options {
   border: 1px solid #63ab66;
   color: #f2f2f3;
   border-radius: 5px;
+  bottom: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .add-book {
@@ -125,6 +147,7 @@ select.options {
   position: fixed;
   bottom: 0;
   width: 15%;
+  height: 53px;
   text-align: center;
   color: #f2f2f3;
   font-size: 17px;
@@ -146,7 +169,7 @@ select.options {
   background-color: #a2a7aa;
   border: 1px solid #ada8a8;
   cursor: pointer;
-  height: 54px;
+  height: 53px;
   border-left: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;

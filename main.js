@@ -62,14 +62,14 @@ function render() {
           });
         }).flat().map(function(book) {
           return (
-            div({className: 'books', key: book.categories}, [
+            div({className: 'book', key: book.categories}, [
               div({className: 'category'}, book.category),
               div({className: 'book-name'}, book.name),
               img({className: 'item-img', src: './images/' + book.image}, null),
               div({className: 'book-author'}, book.author),
-              div({className: 'book-rate'}, book.rate),
-              div({className: 'book-voters'}, book.voters),
-              div({className: 'book-price'}, book.price.value + '€'),
+              div({className: 'book-rate'}, 'Rate: ' + book.rate),
+              div({className: 'book-voters'}, 'Voters: ' + book.voters),
+              div({className: 'book-price'}, 'Price: ' + book.price.value + '€'),
               button({className: 'add-to-basket', onClick: function() {
                 store.dispatch({type: 'ADD-TO-THE-BASKET', payload: book})}
               }, 'Add to the basket'),
@@ -97,8 +97,8 @@ function render() {
             div({className: 'book-author'}, basketItem.book.author),
             img({className: 'item-img', src: './images/' + basketItem.book.image}, null),
             div({className: 'book-name'}, basketItem.book.name),
-            div({className: 'book-price'}, basketItem.book.price.value + '€'),
-            div({className: 'quantity'}, basketItem.quantity),
+            div({className: 'book-price'}, 'Price: ' + basketItem.book.price.value + '€'),
+            div({className: 'quantity'}, 'Quantity: ' + basketItem.quantity),
             button({className: 'add-book', onClick: function() {
               store.dispatch({type: 'ADD-TO-THE-BASKET', payload: basketItem.book})
             }}, 'Quantity'),
