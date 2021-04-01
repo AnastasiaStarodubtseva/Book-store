@@ -22,8 +22,7 @@ body {
 }
 
 .item-img {
-  height: 55px;
-  margin: 7px;
+  width: 100%;
 }
 
 .filter-by-categories {
@@ -58,29 +57,51 @@ select.options {
 .book {
   display: inline-block;
   position: relative;
-  padding: 10px;
-  text-align: center;
+  padding: 7px;
   margin-left: 10%;
-  width: 20%;
+  width: 23%;
   vertical-align: top;
   margin-top: 75px;
-  height: 430px;
+  height: 550px;
   border: 1px solid #cac0c0;
 }
 
 .book-name {
-  color: #1d60de;
+  color: #3f4146;
+  font-size: 16px;
   text-transform: capitalize;
   line-height: 20.9px;
+  margin-top: 10px;
 }
 
 .book-author {
   line-height: 27.2px;
+  font-size: 16px;
+  color: #686a75;
+}
+
+.category {
+  font-size: 16px;
+  color: #686a75;
+  line-height: 17.2px;
 }
 
 .book-rate {
-  line-height: 1.2px;
-  margin-top: 15px;
+
+}
+
+.book-voters {
+  color: #3f4146;
+  font-size: 16px;
+  text-transform: capitalize;
+  line-height: 20.9px;
+}
+
+.book-price {
+  bottom: -3px;
+  position: absolute;
+  font-size: 18px;
+  color: #3f4146;
 }
 
 .basket {
@@ -103,44 +124,68 @@ select.options {
 }
 
 .basket-item {
-  text-transform: capitalize;
-  font-size: 17px;
-  text-align: center;
-  margin-bottom: 30px;
+  column-count: 2;
+  margin-bottom: 40px;
+}
+
+.basket-item .item-img {
+  width: 30%;
+  margin-left: 10%;
+  margin-top: 10px;
+}
+
+.basket-item .book-author {
+
+}
+
+.basket-item .book-name {
+  margin-left: 20px;
+}
+
+.basket-item .book-price {
+  position: relative;
+  font-size: 15px;
+  line-height: 36.9px;
 }
 
 .add-to-basket {
-  height: 35px;
   cursor: pointer;
-  background-color: #5aa75a;
-  border: 1px solid #63ab66;
-  color: #f2f2f3;
-  border-radius: 5px;
+  border: none;
+  color: #de0d0d;
   bottom: 10px;
   position: absolute;
-  left: 0;
   right: 0;
-  margin: auto;
+  background-color: transparent;
 }
 
 .add-book {
-  margin-top: 15px;
-  padding: 5px;
   cursor: pointer;
-  background-color: #a2a7aa;
-  border: 1px solid #a2a7aa;
-  color: #f2f2f3;
-  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  color: #3f4146;
+  font-size: 15px;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.add-book:hover {
+  text-decoration: underline;
 }
 
 .remove-item {
-  margin-top: 15px;
-  padding: 5px;
   cursor: pointer;
-  background-color: #ec1717;
-  border: 1px solid #e44040;
-  color: #f2f2f3;
-  border-radius: 5px;
+  color: #df342f;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+}
+
+.remove-item:hover {
+  text-decoration: underline;
+}
+
+.quantity {
+  color: #3f4146;
 }
 
 .total-price {
