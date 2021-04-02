@@ -8,6 +8,10 @@ function reducer(model, action) {
       return model;
     case 'CLEAR-THE-BASKET':
       model.basket = [];
+      model.showBasketWarning = false;
+      return model;
+    case 'WARN-USER-BEFORE-CLEARING-BASKET':
+      model.showBasketWarning = true;
       return model;
     case 'CHANGE-CATEGORY':
       model.category = action.payload;
@@ -20,7 +24,8 @@ function reducer(model, action) {
 var store = Redux.createStore(reducer, {
   inventory: window.books.store,
   basket: [],
-  category: null
+  category: null,
+  showBasketWarning: false
 });
 
 const e = React.createElement;
@@ -32,6 +37,18 @@ function img(attrs) { return e('img', attrs, null); }
 function render() {
   ReactDOM.render(
     e(ReactRedux.Provider, { store: store }, [
+      (store.getState().showBasketWarning
+      ? e('div', {className: 'alert'}, [
+          div({className: 'modal-bg'}, [
+            div({}, [
+              e('p', {}, 'Warning! All basket items will be removed!'),
+              button({ onClick: function() {
+                store.dispatch({type: 'CLEAR-THE-BASKET'})
+              }}, 'Ok')
+            ])
+          ])
+        ])
+      : null),
       // products
       div({className: 'list-of-items'}, [
         e('form', { className: 'filter-by-categories'}, [
@@ -112,7 +129,7 @@ function render() {
       }),
       (store.getState().basket.length
         ? button({className: 'clear-the-basket', onClick: function() {
-            store.dispatch({type: 'CLEAR-THE-BASKET'})
+            store.dispatch({type: 'WARN-USER-BEFORE-CLEARING-BASKET'})
           }}, 'Clear the basket')
         : null),
       e('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue){
