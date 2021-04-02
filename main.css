@@ -62,7 +62,7 @@ select.options {
   width: 23%;
   vertical-align: top;
   margin-top: 75px;
-  height: 550px;
+  height: 580px;
   border: 1px solid #cac0c0;
 }
 
@@ -75,7 +75,7 @@ select.options {
 }
 
 .book-author {
-  line-height: 27.2px;
+  line-height: 30.2px;
   font-size: 16px;
   color: #686a75;
 }
@@ -86,13 +86,13 @@ select.options {
   line-height: 17.2px;
 }
 
-.book-rate {
-
+.book-rates {
+  margin: 7px 0;
 }
 
 .book-voters {
   color: #3f4146;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: capitalize;
   line-height: 20.9px;
 }
@@ -111,6 +111,7 @@ select.options {
   top: 0;
   right: 0;
   height: 100%;
+  padding-bottom: 80px;
 }
 
 .basket-heading {

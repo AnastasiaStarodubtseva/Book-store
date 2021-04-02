@@ -95,7 +95,7 @@ function render() {
         }, []).map(function(basketItem) {
         return (
           div({className: 'basket-item', key: basketItem.name}, [
-            i({className: 'item-img', src: './images/' + basketItem.book.image}, null),
+            img({className: 'item-img', src: './images/' + basketItem.book.image}, null),
             div({className: 'book-name'}, basketItem.book.name),
             div({className: 'book-author'}, basketItem.book.author),
             div({className: 'book-rate'}, basketItem.book.rate),
@@ -110,18 +110,17 @@ function render() {
           ])
         )
       }),
+      (store.getState().basket.length
+        ? button({className: 'clear-the-basket', onClick: function() {
+            store.dispatch({type: 'CLEAR-THE-BASKET'})
+          }}, 'Clear the basket')
+        : null),
       e('div', {className: 'total-price'}, 'Total ' + store.getState().basket.reduce(function(accumulator, currentValue){
         return accumulator.add(currentValue.price) }, currency(0)) + ' €'
       ),
       button({className: 'order', onClick: function() {
         return (console.log(store.getState().basket));
-      }}, 'Order'),
-
-      (store.getState().basket.length
-        ? button({className: 'clear-the-basket', onClick: function() {
-            store.dispatch({type: 'CLEAR-THE-BASKET'})
-          }}, 'Clear the basket')
-        : null)
+      }}, 'Order')
     ])
     ]),
     document.getElementById('root')
