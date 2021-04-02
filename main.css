@@ -246,9 +246,29 @@ select.options {
 
 .modal-bg > div {
   width: 400px;
-  background: #fff;
+  height: 125px;
+  background: #f44336;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 7px;
+}
+
+.warning-message {
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.clear-basket {
+  border: 1px solid #cac0c0;
+  color: #f2f2f3;
+  background-color: #a2a7aa;
+  width: 80px;
+  margin-left: 40%;
+  cursor: pointer;
+  height: 23px;
+  padding: 0 10px;
+  border-radius: 7px;
 }

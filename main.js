@@ -41,8 +41,8 @@ function render() {
       ? e('div', {className: 'alert'}, [
           div({className: 'modal-bg'}, [
             div({}, [
-              e('p', {}, 'Warning! All basket items will be removed!'),
-              button({ onClick: function() {
+              e('p', {className: 'warning-message'}, 'Warning! All basket items will be removed!'),
+              button({ className: 'clear-basket', onClick: function() {
                 store.dispatch({type: 'CLEAR-THE-BASKET'})
               }}, 'Ok')
             ])
