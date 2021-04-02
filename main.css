@@ -198,10 +198,7 @@ select.options {
   border-right: 1px solid #969595;
   background-color: #a2a7aa;
   padding: 15px;
-  border-radius: 5px;
   cursor: pointer;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 .order {
@@ -214,8 +211,6 @@ select.options {
   cursor: pointer;
   height: 53px;
   border-left: none;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   color: #f2f2f3;
   font-size: 17px;
 }
@@ -229,6 +224,8 @@ select.options {
   cursor: pointer;
   background-color: #ec1717;
   border: 1px solid #e44040;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   color: #f2f2f3;
   font-size: 17px;
   border-radius: 5px;
