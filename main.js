@@ -27,7 +27,7 @@ const e = React.createElement;
 
 function div(attrs, children) { return e('div', attrs, children); }
 function button(attrs, children) { return e('button', attrs, children); }
-function img(attrs, children) { return e('img', attrs, children); }
+function img(attrs) { return e('img', attrs, null); }
 
 function render() {
   ReactDOM.render(
@@ -63,11 +63,12 @@ function render() {
         }).flat().map(function(book) {
           return (
             div({className: 'book', key: book.categories}, [
-              img({className: 'item-img', src: './images/' + book.image}, null),
+              img({className: 'item-img', src: './images/' + book.image}),
               div({className: 'book-name'}, book.name),
               div({className: 'book-author'}, book.author),
               div({className: 'category'}, book.category),
-              div({className: 'book-rate'}, book.rate),
+              div({className: 'book-rates'}, new Array(Math.round(book.rate)).fill(
+                img({className: 'rating-star', src: './images/star.png'})) ),
               div({className: 'book-voters'}, 'Voters: ' + book.voters),
               div({className: 'book-price'}, book.price.value + '€'),
               button({className: 'add-to-basket', onClick: function() {
@@ -94,7 +95,7 @@ function render() {
         }, []).map(function(basketItem) {
         return (
           div({className: 'basket-item', key: basketItem.name}, [
-            img({className: 'item-img', src: './images/' + basketItem.book.image}, null),
+            i({className: 'item-img', src: './images/' + basketItem.book.image}, null),
             div({className: 'book-name'}, basketItem.book.name),
             div({className: 'book-author'}, basketItem.book.author),
             div({className: 'book-rate'}, basketItem.book.rate),
