@@ -32,20 +32,20 @@ function img(attrs) { return e('img', attrs, null); }
 function render() {
   ReactDOM.render(
     e(ReactRedux.Provider, { store: store }, [
-      e('form', { className: 'filter-by-categories'}, [
-        e('label', {className: 'label'}, 'Sort by'),
-        e('select', {className: 'options', onChange: function(event) {
-          store.dispatch({type: 'CHANGE-CATEGORY', payload: event.target.value})
-        }},
-          e('option', {value: 'business'}, 'Business'),
-          e('option', {value: 'science'}, 'Science'),
-          e('option', {value: 'fiction'}, 'Fiction'),
-          e('option', {value: 'hobbies'}, 'Hobbies'),
-          e('option', {value: 'biography'}, 'Biography')
-        )
-      ]),
       // products
       div({className: 'list-of-items'}, [
+        e('form', { className: 'filter-by-categories'}, [
+          e('label', {className: 'label'}, 'Sort by'),
+          e('select', {className: 'options', onChange: function(event) {
+            store.dispatch({type: 'CHANGE-CATEGORY', payload: event.target.value})
+          }},
+            e('option', {value: 'business'}, 'Business'),
+            e('option', {value: 'science'}, 'Science'),
+            e('option', {value: 'fiction'}, 'Fiction'),
+            e('option', {value: 'hobbies'}, 'Hobbies'),
+            e('option', {value: 'biography'}, 'Biography')
+          )
+        ]),
       // heading
         e('h1', {className: 'heading'}, 'Books'),
         store.getState().inventory.filter(function(categoryWithBooks) {
